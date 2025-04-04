@@ -2,7 +2,7 @@ package jd.plano.teclas;
 
 import java.awt.*;
 
-public interface Pulsable implements ElementoVisual{
+public interface Pulsable extends ElementoVisual{
     //Abstract
     public abstract void pulsar();
     public abstract void soltar();

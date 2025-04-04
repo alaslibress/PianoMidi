@@ -12,16 +12,22 @@ public abstract class Piano implements ElementoVisual{
 
     //Constructor
     public Piano(){
-        throw new UnsupportedOperationException("Clase no programada por Alejandro");
+        //Todas las variables de instancia númericas toman valor por defecto 0 y a null los objetos
+        this.teclaInicial = 0;
+        this.teclaFinal = 0;
+        this.posicion = null;
+        this.graphics = null;
     }
 
     //Métodos
+    //Abstractos
     public abstract Tecla getTecla(int canal, int nota);
 
+    //Getters
     public int getTeclaInicial(){
-        throw new UnsupportedOperationException("Clase no programada por Alejandro");
+        return this.teclaInicial;
     }
     public int getTeclaFinal(){
-        throw new UnsupportedOperationException("Clase no programada por Alejandro");
+        return this.teclaFinal;
     }
 }
