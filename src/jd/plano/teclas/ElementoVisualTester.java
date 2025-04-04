@@ -32,7 +32,56 @@ public class ElementoVisualTester {
     public void setElementoVisual(ElementoVisual e){
         this.elementoVisual = e;
     }
-    public boolean hacerPrueba(){
-        throw new UnsupportedOperationException("Metodo sin programar aun, Pablo H");
+
+    public boolean hacerPrueba() {
+        boolean configurado = true;
+        // Comprobacion por si no hay ningun elemento visual seleccionado
+        if (elementoVisual == null) {
+            System.out.println("No se ha configurado ningun elemento visual ");
+            configurado = false;
+        }
+        // 1-CONFIGURAR EL ELEMENTO VISUAL
+        elementoVisual.setPosicion(120, 90);
+        elementoVisual.setGtaphics(this.graphics);
+
+
+        // 2-MOSTRAR EN PANTALLA EL ELEMENTO VISUAL
+        elementoVisual.dibujar();
+
+        // 3-COMPROBAR SI ES PULSABLE
+        if (elementoVisual instanceof Pulsable) {
+            Pulsable pulsable = (Pulsable) elementoVisual;
+            // 3.1-ESTABLECER COLOR PULSADO AZUL
+            pulsable.setColorPulsado(Color.BLUE);
+
+            // 3.2-PAUSA DE 2 SEGUNDOS
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+            // 3.3-PULSAR PARA COMPROBAR QUE SE CAMBIA A AZUL
+            pulsable.pulsar();
+
+            // 3.4-PAUSA DE 2 SEGUNDOS
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+            // 3.5-SE LLAMA AL METODO SOLTAR Y VOLVERA A SU ESTADO ORIGINAL
+            pulsable.soltar();
+        }
+
+        // 4-PREGUNTA AL USUARIO POR CONSOLADAW SI HA SALIDO BIEN EL TEST
+        Consola c = new Consola();
+        c.getCapaTexto().println("¿Ha salido el test bien? (s/n)");
+        String respuesta = c.getTeclado().leerCadenaCaracteres();
+
+        // 5-DEVUELVE TRUE O FALSE SEGUN LA RESPUESTA
+        configurado = respuesta.trim().equalsIgnoreCase("s");
+        return configurado;
     }
 }
