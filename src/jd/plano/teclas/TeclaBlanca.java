@@ -7,7 +7,7 @@ public abstract class TeclaBlanca extends Tecla{
     public static final int ANCHURA=25;
 
     TeclaBlanca(int n){
-        super(null, null, n, false, new Consola().getCapaCanvas().getGraphics());
+        super(n);
     }
 
     @Override

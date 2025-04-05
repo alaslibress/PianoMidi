@@ -1,7 +1,22 @@
 package jd.plano.teclas;
 
-public class TeclaBlanca3 {
+public class TeclaBlanca3 extends TeclaBlanca{
     TeclaBlanca3(int n){
-        throw new UnsupportedOperationException("No programado");
+        super(n);
+    }
+    @Override
+    public int[] getVerticesX() {
+        int x = (int) posicion.getX();
+        int B = TeclaBlanca.ANCHURA;
+        int N = TeclaNegra.ANCHURA;
+        return new int[]{x, x+B-(N/2), x+B};
+    }
+
+    @Override
+    public int[] getVerticesY() {
+        int y = (int) posicion.getY();
+        int B = TeclaBlanca.ANCHURA;
+        int N = TeclaNegra.ANCHURA;
+        return new int[]{y, y+TeclaNegra.ALTURA, y+TeclaBlanca.ALTURA};
     }
 }
