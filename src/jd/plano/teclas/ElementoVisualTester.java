@@ -42,7 +42,7 @@ public class ElementoVisualTester {
         }
         // 1-CONFIGURAR EL ELEMENTO VISUAL
         elementoVisual.setPosicion(120, 90);
-        elementoVisual.setGtaphics(this.graphics);
+        elementoVisual.setGraphics(this.graphics);
 
 
         // 2-MOSTRAR EN PANTALLA EL ELEMENTO VISUAL
