@@ -19,7 +19,6 @@ public abstract class Tecla implements Pulsable{
         this.colorPulsada = null;
         this.nota = n;
         this.pulsada = false;
-        this.graphics = new Consola().getCapaCanvas().getGraphics();
     }
 
     //Métodos
@@ -35,6 +34,10 @@ public abstract class Tecla implements Pulsable{
     @Override
     public void setPosicion(int x, int y) {
         this.posicion.setLocation(new Point(x, y));
+    }
+    @Override
+    public void setGtaphics(Graphics g) {
+        this.graphics = g;
     }
     @Override
     public void pulsar() {
