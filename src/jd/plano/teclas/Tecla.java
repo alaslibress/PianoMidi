@@ -36,7 +36,7 @@ public abstract class Tecla implements Pulsable{
         this.posicion.setLocation(new Point(x, y));
     }
     @Override
-    public void setGtaphics(Graphics g) {
+    public void setGraphics(Graphics g) {
         this.graphics = g;
     }
     @Override
