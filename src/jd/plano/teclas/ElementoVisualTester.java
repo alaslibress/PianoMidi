@@ -37,8 +37,7 @@ public class ElementoVisualTester {
         boolean configurado = true;
         // Comprobacion por si no hay ningun elemento visual seleccionado
         if (elementoVisual == null) {
-            System.out.println("No se ha configurado ningun elemento visual ");
-            configurado = false;
+            throw new IllegalArgumentException("No se ha configurado ningún elemento visual");
         }
         // 1-CONFIGURAR EL ELEMENTO VISUAL
         elementoVisual.setPosicion(120, 90);
