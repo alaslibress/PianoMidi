@@ -32,6 +32,7 @@ public class ReproductorMidi implements Receiver {
 
             //Creamos un dispositivo sequencer
             Sequencer sequencerDispositivo = MidiSystem.getSequencer();
+            sequencerDispositivo.open(); //abrir secuenciador
 
             //Creamos un transmiter mediante el sequencer
             Transmitter transmitter = sequencerDispositivo.getTransmitter();
@@ -76,13 +77,29 @@ public class ReproductorMidi implements Receiver {
                 //Obtenemos la tecla
                 Tecla tecla = this.piano.getTecla(canalMensaje, nota);
 
+                if(tecla!=null){ //Si la tecla existe
+                    int numeroComando = shortMessage.getCommand(); //Comando que nos permite saber si una tecla es o no pulsada
+                    if(numeroComando==ShortMessage.NOTE_ON){ //Caso tecla pulsada
+                        int volumen = shortMessage.getData2(); //Volumen de la nota
+                        if(volumen>0){ //Volumen positivo
+                            //Asignamos un color mediante el canal del mensaje y llamamos a pulsar tecla
+                            tecla.setColorPulsado(COLORES[canalMensaje]);
+                            tecla.pulsar();
+                        }else if(volumen==0){
+                            tecla.soltar();
+                        }
+                        tecla.dibujar(); //Dibujamos la tecla pulsada independientemente del color y volumen
+                    }else if(numeroComando==ShortMessage.NOTE_OFF){
+                        tecla.soltar();
+                        tecla.dibujar(); //Dibujamos la tecla aunque no esté pulsada
+                    }
+                }
             }
         }
         //Si no cumple el condicional el método termina
     }
 
     @Override
-    public void close() {
-
+    public void close() { //Dejamos el método vacío.
     }
 }
