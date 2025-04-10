@@ -6,7 +6,7 @@ public class TeclaBlanca3 extends TeclaBlanca{
     }
     @Override
     public int[] getVerticesX() {
-        int x = (int) posicion.getX();
+        int x =  this.posicion.x;
         int B = TeclaBlanca.ANCHURA;
         int N = TeclaNegra.ANCHURA;
         return new int[]{x, x+B-(N/2), x+B};
@@ -14,7 +14,7 @@ public class TeclaBlanca3 extends TeclaBlanca{
 
     @Override
     public int[] getVerticesY() {
-        int y = (int) posicion.getY();
+        int y = this.posicion.y;
         int B = TeclaBlanca.ANCHURA;
         int N = TeclaNegra.ANCHURA;
         return new int[]{y, y+TeclaNegra.ALTURA, y+TeclaBlanca.ALTURA};

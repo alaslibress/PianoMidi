@@ -1,32 +1,58 @@
-package jd.plano.programa;
-
-import bpc.daw.consola.Consola;
-import jd.plano.teclas.Piano;
+package jd.piano.programa;
 
 import java.io.File;
+import bpc.daw.consola.*;
+import jd.plano.programa.ReproductorMidi;
+import jd.plano.teclas.Piano;
 
 public class Programa {
+
     public static void main(String[] args) {
-        Consola c = new Consola();
-        c.getCapaTexto().println("¿Cual es la ruta del archivo?");
-        String ruta = c.getTeclado().leerCadenaCaracteres();
-        File f = new File(ruta);
-        if(!f.exists()){
-            c.getCapaTexto().println("ERROR: El archivo no existe");
+        Consola consola = new Consola();
+        consola.getCapaFondo().setFondo(new FondoColorSolido(0, 0, 70));
+
+        Teclado teclado = consola.getTeclado();
+        CapaTexto capaTexto = consola.getCapaTexto();
+
+        capaTexto.println("Introduce la ruta del archivo MIDI: ");
+        String rutaArchivo = teclado.leerCadenaCaracteres();
+
+        File archivo = new File(rutaArchivo);
+        if (!archivo.exists() || !archivo.isFile()) {
+            capaTexto.println("El archivo especificado no existe. El programa finalizará.");
+            return;
         }
-        c.getCapaTexto().println("""
-                ¿Donde desea reproducir el archivo?
-                1. Piano Sencillo
-                2. Multi Piano""");
-        int opcion = c.getTeclado().leerNumeroEntero();
-        switch (opcion) {
-            case 1 -> {
-                throw new UnsupportedOperationException("No Programado");
-            }
-            case 2 -> {
-                throw new UnsupportedOperationException("No Programado");
-            }
-            default -> c.getCapaTexto().println("ERROR: Opción no válida");
+
+        capaTexto.println("¿Dónde deseas reproducir la canción?");
+        capaTexto.println("1. Piano Sencillo");
+        capaTexto.println("2. Multi Piano");
+
+        int opcion = 0;
+        try {
+            opcion = teclado.leerNumeroEntero();
+        } catch (Exception e) {
+            capaTexto.println("Opción no válida");
+            return;
         }
+
+        if (opcion != 1 && opcion != 2) {
+            capaTexto.println("Opción no válida");
+            return;
+        }
+
+        CapaCanvas capaCanvas = consola.getCapaCanvas();
+
+        Piano piano = null;
+        if (opcion == 1) {
+            piano = new PianoSencillo(24, 108);
+        } else {
+            piano = new MultiPiano(24, 108);
+        }
+
+        piano.setPosicion(50, 50);
+        piano.setGraphics(capaCanvas.getGraphics());
+        ReproductorMidi reproductor = new ReproductorMidi();
+        reproductor.conectar(piano);
+        reproductor.reproducir(rutaArchivo);
     }
 }
