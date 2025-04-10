@@ -33,7 +33,7 @@ public abstract class Tecla implements Pulsable{
     //Herencia
     @Override
     public void setPosicion(int x, int y) {
-        this.posicion.setLocation(new Point(x, y));
+        this.posicion = new Point(x, y);
     }
     @Override
     public void setGraphics(Graphics g) {

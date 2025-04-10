@@ -1,4 +1,4 @@
-package jd.plano.teclas.test;
+package jd.plano.programa.test;
 
 import jd.plano.programa.PianoSencillo;
 import jd.plano.teclas.ElementoVisualTester;
