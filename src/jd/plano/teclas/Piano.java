@@ -30,4 +30,7 @@ public abstract class Piano implements ElementoVisual{
     public int getTeclaFinal(){
         return this.teclaFinal;
     }
+    protected Graphics getGraphics(Graphics g){ return this.graphics = g; }
+
+
 }
