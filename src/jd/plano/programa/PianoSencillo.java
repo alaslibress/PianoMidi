@@ -1,5 +1,6 @@
 package jd.plano.programa;
 
+import bpc.daw.consola.Consola;
 import jd.plano.teclas.*;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -9,11 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 public class PianoSencillo extends Piano {
-
+    private Consola consola;
     private Map<Integer, Tecla> teclas;
 
     public PianoSencillo(int teclaInicial, int teclaFinal) {
         super();
+        this.consola = new Consola();
         this.teclas = new HashMap<>();
         for (int nota = teclaInicial; nota <= teclaFinal; nota++) {
             Tecla tecla = TeclaFactory.crearTecla(nota);
