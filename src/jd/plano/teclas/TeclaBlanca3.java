@@ -9,7 +9,7 @@ public class TeclaBlanca3 extends TeclaBlanca{
         int x = (int) posicion.getX();
         int B = TeclaBlanca.ANCHURA;
         int N = TeclaNegra.ANCHURA;
-        return new int[]{x, x+B-(N/2), x+B};
+        return new int[]{x, x+B-N, x+B};
     }
 
     @Override
