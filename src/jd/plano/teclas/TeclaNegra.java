@@ -12,13 +12,13 @@ public class TeclaNegra extends Tecla {
 
     @Override
     public int[] getVerticesX() {
-        int x = this.posicion.x;
+        int x = (int) posicion.getX();
         return new int[]{x, x, x + TeclaNegra.ANCHURA, x + TeclaNegra.ANCHURA};
     }
 
     @Override
     public int[] getVerticesY() {
-        int y = this.posicion.y;
+        int y = (int) posicion.getY();
         return new int[]{y, y + TeclaNegra.ALTURA, y + TeclaNegra.ALTURA, y};
     }
 
