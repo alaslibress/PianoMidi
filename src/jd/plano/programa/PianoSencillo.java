@@ -1,5 +1,6 @@
 package jd.plano.programa;
 
+import bpc.daw.consola.CapaCanvas;
 import bpc.daw.consola.Consola;
 import jd.plano.teclas.*;
 import java.awt.Graphics;
@@ -13,7 +14,7 @@ public class PianoSencillo extends Piano {
 
     private Map<Integer, Tecla> teclas;
 
-    public PianoSencillo(int teclaInicial, int teclaFinal /*, Graphics g */) {
+    public PianoSencillo(int teclaInicial, int teclaFinal) {
         super();
         this.teclas = new HashMap<>();
         for (int nota = teclaInicial; nota <= teclaFinal; nota++) {
@@ -24,7 +25,9 @@ public class PianoSencillo extends Piano {
 
     @Override
     public void setGraphics(Graphics g) {
-        this.getGraphics(g);
+        for (Tecla tecla : teclas.values()) {
+            tecla.setGraphics(g);
+        }
     }
 
     @Override
@@ -36,6 +39,8 @@ public class PianoSencillo extends Piano {
 
     @Override
     public void setPosicion(int x, int y) {
+        Consola consola = new Consola();
+        CapaCanvas canvas = consola.getCapaCanvas();
         int x1 = x;
         int y1 = y;
         // Se obtiene la lista de notas en orden ascendente
@@ -44,6 +49,7 @@ public class PianoSencillo extends Piano {
         // Se recorre cada tecla y se le asignan las posiciones según su tipo (blanca o negra)
         for (Integer nota : notas) {
             Tecla tecla = teclas.get(nota);
+            tecla.setGraphics(canvas.getGraphics());
             if (tecla instanceof TeclaBlanca) {
                 tecla.setPosicion(x1, y1);
                 x1 += tecla.getAnchura();
